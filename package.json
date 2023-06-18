@@ -1,0 +1,14 @@
+{
+  "name": "weather_ptoject",
+  "version": "1.0.0",
+  "description": "new weather project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "]"
+  ],
+  "author": "venkatesh narayanan",
+  "license": "ISC"
+}
