@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>New Weather Project</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+
+<body>
+    <p>New weather report project....</p>
+    <form action="/weather" method="post">
+        <!--Enter latitude value-->
+        <input name="lat" placeholder="Enter lattitude" />
+        <!--Enter latitude value-->
+        <input name="lon" placeholder="Enter longitude" />
+        <button name="submit">Get Weather</button>
+    </form>
+    <% if(dataPresent === true){ %>
+    <h1>The weather in <%= dataCityName %> is <%= dataDescription %> and the temperature is <%= dataTemperature %> degree celcius
+    </h1>
+    <p><img src="<%= dataIconUrl %>" /></p>
+   <% } %>
+</body>
+
+</html>

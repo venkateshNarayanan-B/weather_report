@@ -6,9 +6,15 @@ const bodyParser    =   require('body-parser');
 //extend https lib for api manuplation
 const https         =   require("https");
 
+
 //extend express to app
 const app           =   express();
 
+//initiating ejs in project
+app.set("view engine", "ejs");
+
+//initiate static asset folder
+app.use(express.static("assets"));
 //initiate body-parser
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -39,7 +45,7 @@ app.get("/", function(req, res){
 //get custome weather report landing page
 app.get("/weather", function(req, res){
 //load weather file containg form
-res.sendFile(__dirname+"/weather.html");
+res.render("index", {dataPresent: false});
 });
 
 //custome weather report result page
@@ -64,11 +70,18 @@ app.post("/weather", function(req, res){
                 let icon            =   weatherReport.weather[0].icon;
                 let iconUrl         =   "https://openweathermap.org/img/wn/"+icon+"@2x.png";
 
+                //data object
+                let weatherData     =   {
+                                            dataPresent     :   true,
+                                            dataCityName    :   cityName, 
+                                            dataTemperature :   temperature, 
+                                            dataDescription :   description,
+                                            dataIconUrl     :   iconUrl
+                                        };
+
                 //sending weather data to the browser
-                res.write("<h1>the weather in "+ cityName +" is "+temperature+" degree celcius</h1>");
-                res.write("<h3>"+description+"</h3>");
-                res.write("<p><img src='"+iconUrl+"'></p>");
-                res.send();
+                res.render("index", weatherData);
+                
             });
         }else{
             console.log(response.statusCode);
